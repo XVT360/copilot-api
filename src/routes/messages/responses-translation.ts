@@ -62,7 +62,7 @@ export const translateAnthropicMessagesToResponsesPayload = (
     model: payload.model,
     input,
     instructions: translateSystemPrompt(payload.system, payload.model),
-    temperature: payload.temperature ?? null,
+    temperature: 1, // reasoning high temperature fixed to 1
     top_p: payload.top_p ?? null,
     max_output_tokens: payload.max_tokens,
     tools: translatedTools,

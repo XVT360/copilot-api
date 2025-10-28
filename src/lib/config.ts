@@ -5,6 +5,7 @@ import { PATHS } from "./paths"
 
 export interface AppConfig {
   extraPrompts?: Record<string, string>
+  smallModel?: string
 }
 
 const defaultConfig: AppConfig = {
@@ -27,6 +28,7 @@ When using the TodoWrite tool, follow these rules:
 - If the user makes a simple request (such as asking for the time) which you can fulfill by running a terminal command (such as 'date'), you should do so.
 `,
   },
+  smallModel: "gpt-5-mini",
 }
 
 let cachedConfig: AppConfig | null = null
@@ -77,4 +79,9 @@ export function getConfig(): AppConfig {
 export function getExtraPromptForModel(model: string): string {
   const config = getConfig()
   return config.extraPrompts?.[model] ?? ""
+}
+
+export function getSmallModel(): string {
+  const config = getConfig()
+  return config.smallModel ?? "gpt-5-mini"
 }
